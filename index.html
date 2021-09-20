@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>C79</title>
+        <style>
+            img, label, #sort, #del{
+                visibility: hidden;
+            }
+            label{
+                max-width: 80%;
+                padding: 10px;
+            }
+            center{
+                margin-top:10px;
+            }
+        </style>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <center class="container bg-info">
+            <h1 class="text-primary">Student Input</h1>
+            <ol>
+                <li>
+                    <input  type="text" id="i1" placeholder="First Student Name">
+                </li><br>
+                <li>
+                    <input  type="text" id="i2" placeholder="Second Student Name">
+                </li><br>
+                <li>
+                    <input  type="text" id="i3" placeholder="Third Student Name">
+                </li><br>
+                <li>
+                    <input  type="text" id="i4" placeholder="Fourth Student Name">
+                </li><br>
+                <li>
+                    <input  type="text" id="i5" placeholder="Fifth Student Name">
+                </li>
+            </ol>
+            <label  class="bg-danger" id="display"></label><br>
+            <label  class="bg-success" id="display2"></label><br>
+            <img  id="load" src="loader.gif">
+            <button id="submit" onclick="add()">Add Students</button>
+            <button id="sort" onclick="sortS()">Sort</button><button id="del">Delete All</button>
+        </center>
+    </body>
+    <script>
+        var students = [];
+        var st = "";
+        var add = function(){
+            document.getElementById("load").style.visibility = "visible";
+            for(var i=1; i<=5; i++){
+                students.push(document.getElementById("i"+i).value);
+            }
+            for(var j=0; j<students.length; j++){
+                st += "NAME - "+students[j] + ", <br>"
+            }
+            document.getElementById("display").innerHTML = st;
+            document.getElementById("display2").innerHTML = st.replaceAll(",", " ");
+            document.getElementById("load").style.visibility = "hidden";
+            document.getElementById("sort").style.visibility = "visible";
+            document.getElementById("display").style.visibility = "visible";
+            document.getElementById("display2").style.visibility = "visible";
+        }
+        var sortS = function(){
+            document.getElementById("load").style.visibility = "visible";
+            document.getElementById("display").style.visibility = "hidden";
+            document.getElementById("display2").style.visibility = "hidden";
+            students.sort();
+            st = "";
+            for(var j=0; j<students.length; j++){
+                st += "NAME - "+students[j] + "<br>"
+            }
+            document.getElementById("display2").innerHTML = st;
+            document.getElementById("load").style.visibility = "hidden";
+            document.getElementById("sort").style.visibility = "visible";
+            document.getElementById("display").style.visibility = "visible";
+            document.getElementById("display2").style.visibility = "visible";
+        }
+    </script>
+</html>
